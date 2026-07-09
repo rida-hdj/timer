@@ -3,5 +3,14 @@ name = "timer"
 version = "0.1.0"
 edition = "2024"
 
+[profile.release]
+opt-level = "z"
+lto = true
+codegen-units = 1
+panic = "abort"
+strip = true
+debug = 0
+overflow-checks = false
+
 [dependencies]
 rusty_audio = "1.4.1"
