@@ -25,7 +25,7 @@ A simple **command-line countdown timer** written in Rust. Enter a duration in m
 ### Prerequisites
 
 - [Rust toolchain](https://rustup.rs/) (rustc + cargo)
-- Linux: ALSA development libraries
+- Linux: ALSA development libraries (alsa-lib, pkg-config)
 
 ### Installation
 
@@ -37,11 +37,10 @@ cd timer
 # Build (release)
 cargo build --release
 ```
-
 ## Usage
 
 ```bash
-# Run the timer
+# Run the timer if you build it
 cargo run --release
 # or directly
 ./timer
