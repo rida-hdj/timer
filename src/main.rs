@@ -1,14 +1,19 @@
 // Copyright © 2026 rida-hdj <https://github.com/rida-hdj>
 
+use ctrlc;
 use rusty_audio::Audio;
 use std::io::{self, Write};
 use std::{thread, time};
 
 fn main() {
+    ctrlc_handler();
     clear_terminal();
     println!("Welcome to the timer");
-    timer();
-    audio();
+    loop {
+        clear_terminal();
+        timer();
+        audio();
+    }
 }
 
 fn take_time() -> i32 {
@@ -27,6 +32,7 @@ fn take_time() -> i32 {
         }
     }
 }
+// todo: fix take input while the alarm sound in running
 
 fn timer() {
     let mut seconds = take_time() * 60;
@@ -69,4 +75,15 @@ fn audio() {
 fn clear_terminal() {
     print!("\x1B[2J\x1B[1;1H");
     io::stdout().flush().unwrap();
+}
+
+fn ctrlc_handler() {
+    ctrlc::set_handler(|| {
+        println!(
+            "
+thanks for using timer"
+        );
+        std::process::exit(0)
+    })
+    .expect("can't exit");
 }
