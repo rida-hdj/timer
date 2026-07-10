@@ -61,7 +61,8 @@ fn timer() {
         print!("this is more than day :(");
         io::stdout().flush().unwrap();
         thread::sleep(time::Duration::from_secs(5));
-        main();
+        clear_terminal();
+        timer();
     }
 }
 
