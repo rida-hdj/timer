@@ -13,4 +13,5 @@ debug = 0
 overflow-checks = false
 
 [dependencies]
+ctrlc = "3.5.2"
 rusty_audio = "1.4.1"

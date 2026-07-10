@@ -31,7 +31,7 @@ A simple **command-line countdown timer** written in Rust. Enter a duration in m
 
 ```bash
 # Clone the repo
-git clone https://github.com/yourusername/timer.git
+git clone https://github.com/rida-hdj/timer.git
 cd timer
 
 # Build (release)
