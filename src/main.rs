@@ -1,10 +1,13 @@
 // Copyright © 2026 rida-hdj <https://github.com/rida-hdj>
 
-use ctrlc;
-use rusty_audio::Audio;
-use std::io::{self, Write};
-use std::{thread, time};
+// use some libs
 
+use ctrlc; // Ctrl + C handling
+use rusty_audio::Audio; // audio playback
+use std::io::{self, Write}; // take input and fix print! problem
+use std::{thread, time}; // making timer
+
+// the main function
 fn main() {
     ctrlc_handler();
     clear_terminal();
@@ -16,6 +19,7 @@ fn main() {
     }
 }
 
+// taking user input for time duration
 fn take_time() -> i32 {
     loop {
         print!("Enter the duration in minuts: ");
@@ -34,6 +38,7 @@ fn take_time() -> i32 {
 }
 // todo: fix take input while the alarm sound in running
 
+// the main timer function
 fn timer() {
     let mut seconds = take_time() * 60;
     if seconds <= 86400 {
@@ -66,18 +71,21 @@ fn timer() {
     }
 }
 
+// playback audio
 fn audio() {
     let mut audio = Audio::new();
-    audio.add("alarm", "alarm.mp3"); // Load the sound, give it a name
-    audio.play("alarm"); // Execution continues while playback occurs in another thread.
-    audio.wait(); // Block until sounds finish playing
+    audio.add("alarm", "alarm.mp3");
+    audio.play("alarm");
+    audio.wait();
 }
 
+// clear terminal
 fn clear_terminal() {
     print!("\x1B[2J\x1B[1;1H");
     io::stdout().flush().unwrap();
 }
 
+// handling Ctrl + C
 fn ctrlc_handler() {
     ctrlc::set_handler(|| {
         println!(
